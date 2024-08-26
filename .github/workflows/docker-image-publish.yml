@@ -27,6 +27,17 @@ jobs:
       run:         
         docker build . --file WebApp.Dockerfile --tag api.github.com/repos/seandentener/sd_pexa:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
         docker tag api.github.com/repos/seandentener/sd_pexa:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER api.github.com/repos/seandentener/sd_pexa:latest;
-        docker push api.github.com/repos/seandentener/sd_pexa:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
-        docker push api.github.com/repos/seandentener/sd_pexa:latest;  
+        # docker push api.github.com/repos/seandentener/sd_pexa:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
+        # docker push api.github.com/repos/seandentener/sd_pexa:latest;  
       
+    - name: Lowercase the repo name
+      run: echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@85270a1854658d167ab239bce43949edb336fa7c
+      with:
+        app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        images: api.github.com/repos/seandentener/sd_pexa:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER
+
