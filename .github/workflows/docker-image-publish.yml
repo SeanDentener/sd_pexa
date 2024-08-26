@@ -49,7 +49,7 @@ jobs:
     - name: Build the Docker image
       run:         
         docker build . --file WebApp.Dockerfile --tag sdcontainerregistery2.azurecr.io/seandentener:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
-        docker tag sdcontainerregistery2.azurecr.io/seandentener:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER ghcr.io/seandentener:latest;
+        docker tag sdcontainerregistery2.azurecr.io/seandentener:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER sdcontainerregistery2.azurecr.io/seandentener:latest;
         docker push sdcontainerregistery2.azurecr.io/seandentener:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
         docker push sdcontainerregistery2.azurecr.io/seandentener:latest;  
 
