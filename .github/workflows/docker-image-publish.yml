@@ -20,7 +20,7 @@ jobs:
         # Container registry password
         password: ${{ secrets.SAMPLEAPP_ACR_PASSWORD }}
         # Container registry server url
-        login-server: ghcr.io
+        login-server: sdcontainerregistery2.azurecr.io
 
     # - name: Lowercase the repo name
     #   run: echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV} 
@@ -37,7 +37,7 @@ jobs:
 
     # - name: Deploy to Azure Web App
     #   id: deploy-to-webapp
-    #   uses: azure/webapps-deploy@85270a1854658d167ab239bce43949edb336fa7c
+    #   uses: azure/webapps-deploy@85270a1854658d167ab239bce43949edb336fa7c 
     #   with:
     #     app-name: 'sd-pexa'
     #     publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
@@ -52,3 +52,12 @@ jobs:
         docker tag ghcr.io/seandentener:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER ghcr.io/seandentener:latest;
         docker push ghcr.io/seandentener:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
         docker push ghcr.io/seandentener:latest;  
+
+
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@85270a1854658d167ab239bce43949edb336fa7c
+      with:
+        app-name: 'sd-pexa'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        images: 'ghcr.io/seandentener:latest'
