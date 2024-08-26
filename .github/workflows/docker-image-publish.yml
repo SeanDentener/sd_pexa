@@ -25,8 +25,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run:         
-        docker build . --file WebApp.Dockerfile --tag github.com/seandentener:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
-        docker tag github.com/seandentener:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER github.com/seandentener:latest;
-        docker push github.com/seandentener:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
-        docker push github.com/seandentener:latest;  
+        docker build . --file WebApp.Dockerfile --tag $GITHUB_API_URL/repos/seandentener/sd_pexa:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
+        docker tag $GITHUB_API_URL/repos/seandentener/sd_pexa:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER $GITHUB_API_URL/repos/seandentener/sd_pexa:latest;
+        docker push $GITHUB_API_URL/repos/seandentener/sd_pexa:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
+        docker push $GITHUB_API_URL/repos/seandentener/sd_pexa:latest;  
       
