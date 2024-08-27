@@ -4,7 +4,7 @@ import { Dialog, Stack, TextField } from '@fluentui/react'
 import { CopyRegular } from '@fluentui/react-icons'
 
 import { CosmosDBStatus } from '../../api'
-import Contoso from '../../assets/CCT/PEXA.png'
+//import Contoso from '../../assets/CCT/PEXA.png'
 import CCTLogo from '../../assets/CCT/cct-logo.svg'
 import SmartCapeLogo from '../../assets/CCT/Smartcape logo_pwrdby.png'
 import { HistoryButton, ShareButton } from '../../components/common/Button'
