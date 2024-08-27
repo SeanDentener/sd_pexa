@@ -1,0 +1,2 @@
+Azure web app start up command
+python3 -m gunicorn app:app
