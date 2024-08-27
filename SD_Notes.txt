@@ -1,2 +1,6 @@
 Azure web app start up command
 python3 -m gunicorn app:app
+
+
+Environment variables for Azure - advanced format
+

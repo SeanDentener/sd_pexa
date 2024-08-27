@@ -12,7 +12,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 import styles from './Chat.module.css'
-import PexaLogo from '../../assets/CCT/PEXA.png'
+import PexaLogo from '../../assets/CCT/PEXA_No_Background.png'
 import { XSSAllowTags } from '../../constants/sanatizeAllowables'
 
 import {
