@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import uuid from 'react-uuid'
-import { isEmpty } from 'lodash'
+import { delay, isEmpty } from 'lodash'
 import DOMPurify from 'dompurify'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism'
@@ -14,6 +14,9 @@ import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import styles from './Chat.module.css'
 import PexaLogo from '../../assets/CCT/PEXA_No_Background.png'
 import { XSSAllowTags } from '../../constants/sanatizeAllowables'
+//import showTheLogo from './Chat.module.js'
+import { motion } from "framer-motion";
+
 
 import {
   ChatMessage,
@@ -65,6 +68,8 @@ const Chat = () => {
   const [errorMsg, setErrorMsg] = useState<ErrorMessage | null>()
   const [logo, setLogo] = useState('')
 
+
+
   const errorDialogContentProps = {
     type: DialogType.close,
     title: errorMsg?.title,
@@ -96,6 +101,7 @@ const Chat = () => {
       })
       toggleErrorDialog()
     }
+
   }, [appStateContext?.state.isCosmosDBAvailable])
 
   const handleErrorDialogClose = () => {
@@ -542,6 +548,7 @@ const Chat = () => {
     setClearingChat(false)
   }
 
+
   const tryGetRaiPrettyError = (errorMessage: string) => {
     try {
       // Using a regex to extract the JSON part that contains "innererror"
@@ -739,6 +746,9 @@ const Chat = () => {
     )
   }
 
+
+
+
   return (
     <div className={styles.container} role="main">
       {showAuthMessage ? (
@@ -773,8 +783,9 @@ const Chat = () => {
           <div className={styles.chatContainer}>
             {!messages || messages.length < 1 ? (
               <Stack className={styles.chatEmptyState}>
-                <img src={logo} className={styles.chatIcon} aria-hidden="true" />
-                <h1 className={styles.chatEmptyStateTitle} dangerouslySetInnerHTML={{__html: ui?.chat_title ? ui?.chat_title : ''}}></h1>
+                <motion.img  initial={{ opacity: 0, scale: 0.5, rotate: 0 }}  animate={{ opacity: 1, scale: 1, rotate: 360  }}
+    transition={{ duration: 2.0 }} src={logo} id="chatLogoID" className={styles.chatIcon} aria-hidden="true" />
+                  <h1 className={styles.chatEmptyStateTitle} dangerouslySetInnerHTML={{__html: ui?.chat_title ? ui?.chat_title : ''}}></h1>
                 <h2 className={styles.chatEmptyStateSubtitle} dangerouslySetInnerHTML={{__html: ui?.chat_description ? ui?.chat_description : ''}}></h2>
               </Stack>
             ) : (
@@ -1017,9 +1028,15 @@ const Chat = () => {
           {appStateContext?.state.isChatHistoryOpen &&
             appStateContext?.state.isCosmosDBAvailable?.status !== CosmosDBStatus.NotConfigured && <ChatHistoryPanel />}
         </Stack>
+
       )}
+
     </div>
+      
+    
   )
+
 }
+
 
 export default Chat
