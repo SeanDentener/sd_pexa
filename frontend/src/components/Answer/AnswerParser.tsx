@@ -49,6 +49,10 @@ export function parseAnswer(answer: AskResponse): ParsedAnswer {
     { 
       answerText = "Hi there! While I can't help with that specific question, I can definitely assist with any HR-related queries that you may have. Feel free to ask me anything about CoCT HR policies!";
     }
+  if (answerText.indexOf('The retrieved documents do not contain any information') !== -1) 
+  {
+      answerText = "Hi there! While I can't help with that specific question, I can definitely assist with any HR-related queries that you may have. Feel free to ask me anything about CoCT HR policies!";
+  }
 
   return {
     citations: filteredCitations,
