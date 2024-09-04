@@ -181,7 +181,7 @@ const Chat = () => {
     const userMessage: ChatMessage = {
       id: uuid(),
       role: 'user',
-      content: question + " provide details",
+      content:  question,
       date: new Date().toISOString()
     }
 
@@ -928,8 +928,8 @@ const Chat = () => {
                 disabled={isLoading}
                 onSend={(question, id) => {
                   appStateContext?.state.isCosmosDBAvailable?.cosmosDB
-                    ? makeApiRequestWithCosmosDB(question, id)
-                    : makeApiRequestWithoutCosmosDB(question, id)
+                    ? makeApiRequestWithCosmosDB(question  + ' Provide details.', id)
+                    : makeApiRequestWithoutCosmosDB(question  + ' Provide details.', id)
                 }}
                 conversationId={
                   appStateContext?.state.currentChat?.id ? appStateContext?.state.currentChat?.id : undefined

@@ -44,7 +44,7 @@ export function parseAnswer(answer: AskResponse): ParsedAnswer {
 
   filteredCitations = enumerateCitations(filteredCitations)
 
-  console.log(answerText);
+
   if (answerText == "The requested information is not available in the retrieved data. Please try another query or topic.")
     { 
       answerText = "Hi there! While I can't help with that specific question, I can definitely assist with any HR-related queries that you may have. Feel free to ask me anything about CoCT HR policies!";
