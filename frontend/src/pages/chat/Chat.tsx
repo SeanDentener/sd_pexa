@@ -160,7 +160,7 @@ const Chat = () => {
     }
 
     if (resultMessage.role === TOOL) toolMessage = resultMessage
-
+    
     if (!conversationId) {
       isEmpty(toolMessage)
         ? setMessages([...messages, userMessage, assistantMessage])
@@ -177,10 +177,11 @@ const Chat = () => {
     setShowLoadingMessage(true)
     const abortController = new AbortController()
     abortFuncs.current.unshift(abortController)
-
+    
     const userMessage: ChatMessage = {
       id: uuid(),
       role: 'user',
+      //sd changed from question to updatedQuestion
       content:  question,
       date: new Date().toISOString()
     }
@@ -207,11 +208,15 @@ const Chat = () => {
     }
 
     appStateContext?.dispatch({ type: 'UPDATE_CURRENT_CHAT', payload: conversation })
+    
     setMessages(conversation.messages)
+
+    conversation.messages[0].content = question + ' Provide details';
 
     const request: ConversationRequest = {
       messages: [...conversation.messages.filter(answer => answer.role !== ERROR)]
     }
+    conversation.messages[0].content = question;
 
     let result = {} as ChatResponse
     try {
@@ -794,7 +799,7 @@ const Chat = () => {
                   <>
                     {answer.role === 'user' ? (
                       <div className={styles.chatMessageUser} tabIndex={0}>
-                        <div className={styles.chatMessageUserMessage}>{answer.content} TEST</div>
+                        <div className={styles.chatMessageUserMessage}>{answer.content}</div>
                       </div>
                     ) : answer.role === 'assistant' ? (
                       <div className={styles.chatMessageGpt}>
@@ -927,10 +932,9 @@ const Chat = () => {
                 placeholder="Type a new question..."
                 disabled={isLoading}
                 onSend={(question, id) => {
-                  console.log(question  + ' Provide details.');
                   appStateContext?.state.isCosmosDBAvailable?.cosmosDB
-                    ? makeApiRequestWithCosmosDB(question  + ' Provide details.', id)
-                    : makeApiRequestWithoutCosmosDB(question  + ' Provide details.', id)
+                    ? makeApiRequestWithCosmosDB(question, id)
+                    : makeApiRequestWithoutCosmosDB(question, id)
                 }}
                 conversationId={
                   appStateContext?.state.currentChat?.id ? appStateContext?.state.currentChat?.id : undefined
