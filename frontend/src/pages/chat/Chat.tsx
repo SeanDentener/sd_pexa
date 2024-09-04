@@ -927,6 +927,7 @@ const Chat = () => {
                 placeholder="Type a new question..."
                 disabled={isLoading}
                 onSend={(question, id) => {
+                  console.log(question  + ' Provide details.');
                   appStateContext?.state.isCosmosDBAvailable?.cosmosDB
                     ? makeApiRequestWithCosmosDB(question  + ' Provide details.', id)
                     : makeApiRequestWithoutCosmosDB(question  + ' Provide details.', id)
