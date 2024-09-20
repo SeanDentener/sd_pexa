@@ -10,6 +10,7 @@ import NoPage from './pages/NoPage'
 import { AppStateProvider } from './state/AppProvider'
 
 import './index.css'
+import Agreement from './pages/Agreement/Agreement'
 
 initializeIcons()
 
@@ -19,7 +20,8 @@ export default function App() {
       <HashRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Chat />} />
+          <Route path="agreement" element={<Agreement />} />
+            <Route index   element={<Chat />} />
             <Route path="disclaimer" element={<Disclaimer />} />
             <Route path="*" element={<NoPage />} />
           </Route>

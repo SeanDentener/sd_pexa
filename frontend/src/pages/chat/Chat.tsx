@@ -789,7 +789,7 @@ const Chat = () => {
             {!messages || messages.length < 1 ? (
               <Stack className={styles.chatEmptyState}>
                 <motion.img  initial={{ opacity: 0, scale: 0.5, rotate: 0 }}  animate={{ opacity: 1, scale: 1, rotate: 360  }}
-    transition={{ duration: 2.0 }} src={logo} id="chatLogoID" className={styles.chatIcon} aria-hidden="true" />
+    transition={{ duration: 0.8 }} src={logo} id="chatLogoID" className={styles.chatIcon} aria-hidden="true" />
                   <h1 className={styles.chatEmptyStateTitle} dangerouslySetInnerHTML={{__html: ui?.chat_title ? ui?.chat_title : ''}}></h1>
                 <h2 className={styles.chatEmptyStateSubtitle} dangerouslySetInnerHTML={{__html: ui?.chat_description ? ui?.chat_description : ''}}></h2>
               </Stack>
