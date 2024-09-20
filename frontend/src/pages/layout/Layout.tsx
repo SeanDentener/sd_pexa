@@ -152,6 +152,8 @@ const Layout = () => {
             <a _ngcontent-ng-c2412955180="" href="https://www.capetown.gov.za/General/Contact-us" target="_blank" aria-label="Contact Us">Contact Us</a>
              | <a _ngcontent-ng-c2412955180="" href="https://www.capetown.gov.za/General/Terms-of-use" target="_blank" aria-label="Terms and Conditions">Terms</a>
               | <a _ngcontent-ng-c2412955180="" href="https://www.capetown.gov.za/General/Privacy" target="_blank" >Privacy Policy</a>
+              | <Link to="/disclaimer" target="_blank" aria-label="Disclaimer">Disclaimer</Link>
+              
               </p>
               <Stack horizontal tokens={{ childrenGap: 4 }} className={styles.shareButtonContainer}>
           <Stack horizontal verticalAlign="center">

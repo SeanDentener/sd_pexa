@@ -211,12 +211,12 @@ const Chat = () => {
     
     setMessages(conversation.messages)
 
-    conversation.messages[0].content = question + ' Provide details';
+    conversation.messages[conversation.messages.length-1].content = question + ' Provide details';
 
     const request: ConversationRequest = {
       messages: [...conversation.messages.filter(answer => answer.role !== ERROR)]
     }
-    conversation.messages[0].content = question;
+    conversation.messages[conversation.messages.length-1].content = question;
 
     let result = {} as ChatResponse
     try {
